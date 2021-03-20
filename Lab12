@@ -1,0 +1,18 @@
+#include <iostream>
+#include<cmath>
+
+
+using namespace std;
+// функция счета x
+void schet(double *px)
+{
+    *px = (pow(5, 1.0 / 2) + 5) / (pow(7, 1.0 / 2) + 7) + (pow(12, 1.0 / 2) + 12) / (pow(8, 1.0 / 2) + 8) + (pow(19, 1.0 / 2) + 19) / (pow(2, 1.0 / 2) + 2);
+}
+//  осн функция, вызывающая функцию счета
+int main()
+{
+	setlocale (LC_ALL, "Rus");
+    double x = 0;
+    schet(&x);
+    cout << "Ответ"<< x << endl;
+}
