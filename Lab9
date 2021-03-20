@@ -1,0 +1,24 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "Rus");
+	char buffer[10];
+	char strock1[10];
+	char strock2[10];
+	cout << "введите месяц" << endl;
+	cin >> strock1;
+	cout << "введите год" << endl;
+	cin >> strock2;
+	char *ps1, *ps2;
+	ps1=&strock1[0];
+	strcpy(buffer, ps1);
+	ps2=&strock2[0];
+	strcpy(ps1, ps2);
+	strcpy(ps2, buffer);
+	cout << "изменённый вариант" << endl;
+	cout << strock1 << endl << strock2 << endl;
+}
