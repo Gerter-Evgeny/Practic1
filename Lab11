@@ -1,0 +1,76 @@
+#include <iostream>
+#include<windows.h>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+    //  n-колличество контактов
+    const int n = 2;
+	bool check = true;
+	char TELECHEK[30];
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    setlocale(LC_ALL, "rus");
+    char buffer[500];
+    //ввод структуры и массива структур
+    struct NOTE
+    {
+        char Name[30];
+        char TELE[30];
+        char DATE[30];
+    };
+    NOTE BLOCKNOTE[n];
+    NOTE* pBLOCKNOTE;
+	int h=1;
+    for (pBLOCKNOTE= BLOCKNOTE; pBLOCKNOTE < BLOCKNOTE + n; pBLOCKNOTE++)
+	{
+    // ввод данных
+     
+        cout << "контакт номер " << h << endl;
+        cout << "Фамилия и инициалы: ";
+        cin >> pBLOCKNOTE->Name;
+        cout << "номер: ";
+        cin >> pBLOCKNOTE->TELE;
+        cout << "дата рождения: ";
+        cin >> pBLOCKNOTE->DATE;
+        h++;
+	}
+    // сортировка
+    
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < n-1; j++)
+		{
+			if (strcmp(BLOCKNOTE[j].DATE, BLOCKNOTE[j + 1].DATE) == -1)
+			{
+				strcpy_s(buffer, BLOCKNOTE[j].Name);
+				strcpy_s(BLOCKNOTE[j].Name, BLOCKNOTE[j + 1].Name);
+				strcpy_s(BLOCKNOTE[j + 1].Name, buffer);
+				strcpy_s(buffer, BLOCKNOTE[j].DATE);
+				strcpy_s(BLOCKNOTE[j].DATE, BLOCKNOTE[j + 1].DATE);
+				strcpy_s(BLOCKNOTE[j + 1].DATE, buffer);
+				strcpy_s(buffer, BLOCKNOTE[j].TELE);
+				strcpy_s(BLOCKNOTE[j].TELE, BLOCKNOTE[j + 1].TELE);
+				strcpy_s(BLOCKNOTE[j + 1].TELE, buffer);
+			}
+		}
+//вывод сортированного массива;
+for (int i = 0; i < n; i++)
+{
+	cout << "пользователь номер " << i + 1 << endl << "Фамилия и инициалы: " << BLOCKNOTE[i].Name << endl <<
+"номер: " << BLOCKNOTE[i].TELE << endl << "Дата рождения: " << BLOCKNOTE[i].DATE << endl;
+}
+cout << "введите номер контакта: ";
+cin >> TELECHEK;
+int count=0;
+for (pBLOCKNOTE= BLOCKNOTE; pBLOCKNOTE < BLOCKNOTE + n; pBLOCKNOTE++, count++)
+	if (strcmp(TELECHEK, pBLOCKNOTE->TELE) == 0)
+	{
+		cout << "пользователь номер " <<  count + 1 << endl << "Фамилия и инициалы: " << pBLOCKNOTE->Name << endl <<
+			"номер: " << pBLOCKNOTE->TELE << endl << "Дата рождения: " << pBLOCKNOTE->DATE << endl;
+		check = false;
+	}
+	if (check)
+		cout << "пользователь не найден" << endl;
+	system("pause");
+}
