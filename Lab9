@@ -6,6 +6,8 @@ using namespace std;
 void main()
 {
 	setlocale(LC_ALL, "Rus");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	char buffer[10];
 	char strock1[10];
 	char strock2[10];
